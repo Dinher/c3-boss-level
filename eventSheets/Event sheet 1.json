@@ -1,0 +1,281 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "isShooting",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 713165244464886
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 463286561506680,
+					"parameters": {
+						"key": 39
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "mr_potato",
+					"sid": 563071082134764,
+					"parameters": {
+						"state": "not-mirrored"
+					}
+				}
+			],
+			"sid": 205373742803331
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 961350087655867,
+					"parameters": {
+						"key": 37
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "mr_potato",
+					"sid": 988434170760176,
+					"parameters": {
+						"state": "mirrored"
+					}
+				}
+			],
+			"sid": 821539631458838
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-moving",
+					"objectClass": "mr_potato",
+					"sid": 974968774673618,
+					"behaviorType": "Platform"
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 558246529092110,
+					"parameters": {
+						"variable": "isShooting"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "mr_potato",
+					"sid": 312407018246011,
+					"parameters": {
+						"animation": "\"run\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 701116282251276
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-stopped",
+					"objectClass": "mr_potato",
+					"sid": 711854423721878,
+					"behaviorType": "Platform"
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 386197791916994,
+					"parameters": {
+						"variable": "isShooting"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "mr_potato",
+					"sid": 175778374154209,
+					"parameters": {
+						"animation": "\"idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 885560487445002
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-landed",
+					"objectClass": "mr_potato",
+					"sid": 941737499175801,
+					"behaviorType": "Platform"
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 432247128380334,
+					"parameters": {
+						"variable": "isShooting"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "mr_potato",
+					"sid": 997979461023421,
+					"parameters": {
+						"animation": "\"idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 370526507519830
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 783648523677736,
+					"parameters": {
+						"key": 88
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 368843372382268,
+					"parameters": {
+						"variable": "isShooting",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "mr_potato",
+					"sid": 617362426623064,
+					"parameters": {
+						"animation": "\"shoot\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 557504731130182
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-animation-playing",
+					"objectClass": "mr_potato",
+					"sid": 418628183940108,
+					"parameters": {
+						"animation": "\"shoot\""
+					}
+				},
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "mr_potato",
+					"sid": 492162748065848,
+					"parameters": {
+						"comparison": 0,
+						"number": "5"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 854618707361895
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 465086743020284,
+					"parameters": {
+						"variable": "isShooting",
+						"value": "false"
+					}
+				},
+				{
+					"id": "spawn-another-object",
+					"objectClass": "mr_potato",
+					"sid": 201420587892199,
+					"parameters": {
+						"object": "bullet",
+						"layer": "0",
+						"image-point": "1",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "mr_potato",
+					"sid": 561446317270638,
+					"parameters": {
+						"animation": "\"idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 846869291454601
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-created",
+					"objectClass": "bullet",
+					"sid": 808193722619784
+				},
+				{
+					"id": "is-mirrored",
+					"objectClass": "mr_potato",
+					"sid": 988862401681699
+				}
+			],
+			"actions": [
+				{
+					"id": "set-speed",
+					"objectClass": "bullet",
+					"sid": 307893545822209,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"speed": "bullet.Bullet.Speed * -1"
+					}
+				}
+			],
+			"sid": 362011880730244
+		}
+	],
+	"sid": 882523803157245
+}
