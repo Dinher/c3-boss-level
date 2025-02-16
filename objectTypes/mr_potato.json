@@ -3,6 +3,7 @@
 	"plugin-id": "Sprite",
 	"sid": 176980850976461,
 	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
 	"behaviorTypes": [
 		{
@@ -593,7 +594,7 @@
 				"isPingPong": false,
 				"repeatCount": 1,
 				"repeatTo": 0,
-				"speed": 20
+				"speed": 50
 			}
 		],
 		"subfolders": []

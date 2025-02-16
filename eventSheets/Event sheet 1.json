@@ -3,6 +3,56 @@
 	"events": [
 		{
 			"eventType": "variable",
+			"name": "currentMonsters",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 372885697785459
+		},
+		{
+			"eventType": "variable",
+			"name": "monsterHealth",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 132680615926574
+		},
+		{
+			"eventType": "variable",
+			"name": "numberFood",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 107903585804377
+		},
+		{
+			"eventType": "variable",
+			"name": "isPoweredUp",
+			"type": "string",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 759050601188635
+		},
+		{
+			"eventType": "variable",
+			"name": "maxMonsters",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 913829678745169
+		},
+		{
+			"eventType": "variable",
 			"name": "isShooting",
 			"type": "boolean",
 			"initialValue": "false",
@@ -238,6 +288,18 @@
 					}
 				},
 				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 248206251747595,
+					"parameters": {
+						"audio-file": "laser",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
 					"id": "set-animation",
 					"objectClass": "mr_potato",
 					"sid": 561446317270638,
@@ -275,6 +337,396 @@
 				}
 			],
 			"sid": 362011880730244
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 889334013706095
+				}
+			],
+			"actions": [
+				{
+					"id": "play-by-name",
+					"objectClass": "Audio",
+					"sid": 400847466813973,
+					"parameters": {
+						"folder": "music",
+						"audio-file-name": "\"song\"",
+						"loop": "looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 349272957602616
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 318333312980202,
+					"parameters": {
+						"key": 38
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 970669598301346,
+					"parameters": {
+						"audio-file": "jump",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 763028355389021
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-loader-layout-complete",
+					"objectClass": "System",
+					"sid": 811200616193244
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layout-scale",
+					"objectClass": "System",
+					"sid": 915653771217620,
+					"parameters": {
+						"scale": "0.8"
+					}
+				}
+			],
+			"sid": 240732310298033
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-animation-finished",
+					"objectClass": "tmp_boss",
+					"sid": 307420181154642
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "tmp_boss",
+					"sid": 995493141034522,
+					"parameters": {
+						"animation": "\"idle\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 999850446974717
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "tmp_boss",
+					"sid": 793264641371545,
+					"parameters": {
+						"object": "bullet"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-height",
+					"objectClass": "tmp_boss",
+					"sid": 880092304060278,
+					"parameters": {
+						"height": "self.height *0.9"
+					}
+				},
+				{
+					"id": "set-width",
+					"objectClass": "tmp_boss",
+					"sid": 877861461482268,
+					"parameters": {
+						"width": "self.width * 0.9"
+					}
+				},
+				{
+					"id": "set-angle",
+					"objectClass": "tmp_boss",
+					"sid": 404266520685594,
+					"parameters": {
+						"angle": "random(360)"
+					}
+				},
+				{
+					"id": "set-acceleration",
+					"objectClass": "tmp_boss",
+					"sid": 262899688187474,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"acceleration": "5"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 499983465012006,
+					"parameters": {
+						"audio-file": "ouch",
+						"loop": "not-looping",
+						"volume": "1",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "subtract-from-eventvar",
+					"objectClass": "System",
+					"sid": 879069580072052,
+					"parameters": {
+						"variable": "monsterHealth",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-default-color",
+					"objectClass": "tmp_boss",
+					"sid": 362423810880813,
+					"parameters": {
+						"color": "rgbEx255(int(random(255)),int(random(255)),int(random(255)))"
+					}
+				}
+			],
+			"sid": 300983989112421
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "bullet",
+					"sid": 284076239665068,
+					"parameters": {
+						"object": "tmp_boss"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "bullet",
+					"sid": 863438123657989
+				}
+			],
+			"sid": 328558668015115
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "evaluate-expression",
+					"objectClass": "System",
+					"sid": 397808560086523,
+					"parameters": {
+						"value": "(currentMonsters <= maxMonsters) & monsterHealth < 5 "
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "tmp_boss",
+					"sid": 113704660378084,
+					"parameters": {
+						"object": "tmp_boss",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 282325733525559,
+					"parameters": {
+						"variable": "currentMonsters",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 735033329633706
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-height",
+					"objectClass": "tmp_boss",
+					"sid": 356439600630368,
+					"parameters": {
+						"comparison": 2,
+						"height": "130"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 183746908180652,
+					"parameters": {
+						"audio-file": "explosion",
+						"loop": "not-looping",
+						"volume": "10",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "tmp_boss",
+					"sid": 889371797007438
+				}
+			],
+			"sid": 522497336364741
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "mr_potato",
+					"sid": 972319389516686,
+					"parameters": {
+						"object": "Sprite"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 428931354314413,
+					"parameters": {
+						"audio-file": "powerup",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Sprite",
+					"sid": 752342008657990
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 438524535637123,
+					"parameters": {
+						"variable": "numberFood",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 441662885262326
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "evaluate-expression",
+					"objectClass": "System",
+					"sid": 807261533235574,
+					"parameters": {
+						"value": "numberFood = 20 & isPoweredUp = \"false\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-default-color",
+					"objectClass": "mr_potato",
+					"sid": 743432493071205,
+					"parameters": {
+						"color": "rgb(255, 255,255)"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "mr_potato",
+					"sid": 130070500935307,
+					"parameters": {
+						"opacity": "100"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 534275176050003,
+					"parameters": {
+						"audio-file": "woohoo",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 849839474754202,
+					"parameters": {
+						"audio-file": "woohoo",
+						"loop": "not-looping",
+						"volume": "0",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 151564774818060,
+					"parameters": {
+						"variable": "isPoweredUp",
+						"value": "\"true\""
+					}
+				},
+				{
+					"id": "set-height",
+					"objectClass": "mr_potato",
+					"sid": 312538000724565,
+					"parameters": {
+						"height": "120"
+					}
+				},
+				{
+					"id": "set-width",
+					"objectClass": "mr_potato",
+					"sid": 543958849610538,
+					"parameters": {
+						"width": "120"
+					}
+				}
+			],
+			"sid": 754037205789656
 		}
 	],
 	"sid": 882523803157245

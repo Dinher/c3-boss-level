@@ -3,6 +3,7 @@
 	"plugin-id": "Sprite",
 	"sid": 673039491625284,
 	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
 	"behaviorTypes": [
 		{
@@ -25,7 +26,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 44071,
+						"imageSpriteId": 3332925,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
