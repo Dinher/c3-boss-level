@@ -511,7 +511,46 @@
 					}
 				}
 			],
-			"sid": 300983989112421
+			"sid": 300983989112421,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 264961572709725,
+							"parameters": {
+								"value": "(currentMonsters <= maxMonsters) & monsterHealth < 5 "
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "spawn-another-object",
+							"objectClass": "tmp_boss",
+							"sid": 509272408214098,
+							"parameters": {
+								"object": "tmp_boss",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 231632468806129,
+							"parameters": {
+								"variable": "currentMonsters",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 887619468069551
+				}
+			]
 		},
 		{
 			"eventType": "block",
@@ -533,43 +572,6 @@
 				}
 			],
 			"sid": 328558668015115
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "evaluate-expression",
-					"objectClass": "System",
-					"sid": 397808560086523,
-					"parameters": {
-						"value": "(currentMonsters <= maxMonsters) & monsterHealth < 5 "
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "spawn-another-object",
-					"objectClass": "tmp_boss",
-					"sid": 113704660378084,
-					"parameters": {
-						"object": "tmp_boss",
-						"layer": "0",
-						"image-point": "0",
-						"create-hierarchy": false,
-						"template-name": "\"\""
-					}
-				},
-				{
-					"id": "add-to-eventvar",
-					"objectClass": "System",
-					"sid": 282325733525559,
-					"parameters": {
-						"variable": "currentMonsters",
-						"value": "1"
-					}
-				}
-			],
-			"sid": 735033329633706
 		},
 		{
 			"eventType": "block",
